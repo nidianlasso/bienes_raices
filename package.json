@@ -1,0 +1,33 @@
+{
+  "name": "bienes_raices",
+  "version": "1.0.0",
+  "description": "Aplicacion web para bienes raices",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nidianlasso/bienes_raices.git"
+  },
+  "keywords": [
+    "MVC",
+    "Pug",
+    "Tailwind",
+    "MySQL",
+    "Sequelize"
+  ],
+  "author": "Nidian Lasso",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nidianlasso/bienes_raices/issues"
+  },
+  "homepage": "https://github.com/nidianlasso/bienes_raices#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "pug": "^3.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
