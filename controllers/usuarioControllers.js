@@ -20,10 +20,17 @@ const registrar = async(req, res) =>{
     await check('email').notEmpty().withMessage('El email es obligatorio').run(req)
     await check('password').isLength({min: 6}).withMessage('El password debe ser de al menos seis caracteres').run(req)
     await check('repetir_password').equals('password').withMessage('La contrasenas no coinciden').run(req)
-    
-    
     let resultado = validationResult(req)
-    res.json(resultado.array());
+    
+    //VERIFICAR SI EXISTEN LOS ERRORES
+    if (!resultado.isEmpty()){ // SI EL USUARIO NO TIENE DATOS
+        //ERRORES
+        return res.render('auth/registro', {//GARANTIZA QUE NO SE EJECUTE MAS EL IF SI NO QUE MUESTRE EL ERROR
+            pagina: 'CREAR CUENTA',
+            errores: resultado.array() //SE CONVIERTE EL RESULTADO EN UN ARREGLO PARA ITERARLO.
+        })
+    }
+
     const usuario = await Usuario.create(req.body);
     res.json(usuario) 
 }
