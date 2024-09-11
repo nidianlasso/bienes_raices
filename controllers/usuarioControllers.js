@@ -58,6 +58,12 @@ const registrar = async(req, res) =>{
         password,
         token: generarId()
     })
+
+    //MOSTRAR MENSAJE DE CONFIRMACION
+    res.render('templates/mensaje', {
+        pagina: 'Cuenta creada correctamente',
+        mensaje: 'Hemos enviado un correo de confirmacion, presiona el enlace'
+    })
 }
 
 
