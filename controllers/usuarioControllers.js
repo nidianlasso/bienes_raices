@@ -15,8 +15,16 @@ const formularioRegistro = (req, res)=>{
 
 //HACER EL REGISTRO EN LA BASE DE DATOS
 const registrar = async(req, res) =>{   
+    //VALIDACION DE FORMULARIO
+    await check('nombre').notEmpty().withMessage('El nombre es obligatorio').run(req)
+    await check('email').notEmpty().withMessage('El email es obligatorio').run(req)
+    await check('password').isLength({min: 6}).withMessage('El password debe ser de al menos seis caracteres').run(req)
+    await check('repetir_password').equals('password').withMessage('La contrasenas no coinciden').run(req)
     
-    const usuario = await Usuario.create(req.body)
+    
+    let resultado = validationResult(req)
+    res.json(resultado.array());
+    const usuario = await Usuario.create(req.body);
     res.json(usuario) 
 }
 
