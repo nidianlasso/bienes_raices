@@ -36,9 +36,9 @@ const registrar = async(req, res) =>{
         })
     }
 
-    
+    const {nombre, email, password} = req.body
 //VERFICAR USUARIOS DUPLICADOS
-    const existeUsuario = await Usuario.findOne({where: {email: req.body.email}})
+    const existeUsuario = await Usuario.findOne({where: {email}})
     console.log(existeUsuario);
     if (existeUsuario){
         return res.render('auth/registro', {
@@ -50,7 +50,13 @@ const registrar = async(req, res) =>{
             }
         })
     }
-    return;
+    //ALMACENAR USUARIOS HASHEADOS
+    await Usuario.create({
+        nombre,
+        email,
+        password,
+        token: 123
+    })
 }
 
 
