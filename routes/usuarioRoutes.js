@@ -5,7 +5,7 @@ const router = express.Router();
 router.get('/login', formularioLogin);
 
 router.get('/registro', formularioRegistro);
-router.get('/registro', registrar);
+router.post('/registro', registrar);
 
 router.get('/recuperacion', formularioRecuperacionCuenta);
 

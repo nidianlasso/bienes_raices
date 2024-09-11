@@ -1,4 +1,5 @@
 import express from 'express'
+import db from './config/db.js'
 
 //IMPORTAR LAS RUTAS DE LOS ARCHIVOS QUE SE VAN A MOSTRAR
 import usuarioRoutes from './routes/usuarioRoutes.js'
@@ -6,6 +7,19 @@ import usuarioRoutes from './routes/usuarioRoutes.js'
 //CREAR LA APP
 const app = express();
 
+//HABILITAR LECTURA DE DATOS DEL FORMULARIO
+app.use(express.urlencoded({extended: true}))
+
+//CONEXIÓN A LA BASE DE DATOS
+try{
+    await db.authenticate();
+    db.sync()//Realiza las acciones dentro de la base de datos de forma automática
+}catch(error){
+    console.error('AQUÍ ESTÁ EL ERROR');
+    
+    console.error(error);
+    
+}
 
 //HABILITAR PUG
 app.set('view engine', 'pug')
